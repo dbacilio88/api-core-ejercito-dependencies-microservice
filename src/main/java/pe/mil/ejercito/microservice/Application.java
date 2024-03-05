@@ -2,7 +2,6 @@ package pe.mil.ejercito.microservice;
 
 import com.bxcode.tools.loader.base.MicroserviceBaseApplication;
 import com.bxcode.tools.loader.componets.properties.MicroserviceProperties;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

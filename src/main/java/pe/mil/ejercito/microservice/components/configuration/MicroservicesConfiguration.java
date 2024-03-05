@@ -6,13 +6,11 @@ import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.reactive.WebFluxProperties;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
-import org.springframework.web.server.WebFilter;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -24,9 +22,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
-
-import java.lang.reflect.Type;
 
 /**
  * MicroservicesConfiguration
@@ -48,10 +43,9 @@ import java.lang.reflect.Type;
 @EnableAutoConfiguration(exclude = {WebMvcAutoConfiguration.class})
 public class MicroservicesConfiguration implements WebFluxConfigurer {
 
-    private static String BXCODE_URL = "http://localhost";
-    private TypeResolver typeResolver;
-    private String appName;
-    private String appVersion;
+    private final TypeResolver typeResolver;
+    private final String appName;
+    private final String appVersion;
 
     @Autowired
     public MicroservicesConfiguration(TypeResolver typeResolver,
@@ -104,6 +98,7 @@ public class MicroservicesConfiguration implements WebFluxConfigurer {
     }
 
     private ApiInfo apiInfo() {
+        String BXCODE_URL = "http://localhost";
         return new ApiInfoBuilder()
                 .version(appName)
                 .title(appVersion)

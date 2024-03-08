@@ -3,7 +3,6 @@ package pe.mil.ejercito.microservice.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pe.mil.ejercito.microservice.repositories.entities.EpDivisionStatusEntity;
-
 import java.util.Optional;
 
 /**
@@ -22,7 +21,5 @@ import java.util.Optional;
 
 @Repository
 public interface IEpDivisionStatusRepository extends JpaRepository<EpDivisionStatusEntity, Long> {
-
     Optional<EpDivisionStatusEntity> findByUuId(String uuId);
-
 }

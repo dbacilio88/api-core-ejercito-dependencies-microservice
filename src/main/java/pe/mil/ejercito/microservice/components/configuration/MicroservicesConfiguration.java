@@ -59,7 +59,7 @@ public class MicroservicesConfiguration implements WebFluxConfigurer {
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                //.groupName("microservice-api")
+                .groupName("microservice-api")
                 .useDefaultResponseMessages(false)
                 .additionalModels(
                         typeResolver.resolve(ResponseBase.class)
@@ -98,18 +98,14 @@ public class MicroservicesConfiguration implements WebFluxConfigurer {
     }
 
     private ApiInfo apiInfo() {
-        String BXCODE_URL = "http://localhost";
+        final String URL = "localhost";
         return new ApiInfoBuilder()
                 .version(appName)
                 .title(appVersion)
-                .contact(new Contact("bxcode Inc.", BXCODE_URL, "bxcode@gmail.com"))
+                .contact(new Contact("bxcode Inc.", URL, "bxcode@gmail.com"))
                 .license("bxcode Inc.")
-                .licenseUrl(BXCODE_URL)
+                .licenseUrl(URL)
                 .build();
     }
 
-/*    @Bean
-    public WebFluxProperties webFluxProperties() {
-        return new WebFluxProperties();
-    }*/
 }

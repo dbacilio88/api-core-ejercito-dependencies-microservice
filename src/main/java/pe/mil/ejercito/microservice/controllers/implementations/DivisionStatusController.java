@@ -7,17 +7,17 @@ import com.bxcode.tools.loader.dto.Response;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.WebExchangeBindException;
 import pe.mil.ejercito.microservice.controllers.contracts.IDivisionStatusController;
+import pe.mil.ejercito.microservice.dtos.DivisionStatusDto;
 import pe.mil.ejercito.microservice.services.contracts.IDivisionStatusDomainService;
 import reactor.core.publisher.Mono;
 
-import static pe.mil.ejercito.microservice.constants.ProcessConstant.FIND_BY_ID_DIVISION_STATUS_PATH;
-import static pe.mil.ejercito.microservice.constants.ProcessConstant.MICROSERVICE_PATH_CONTEXT;
+import javax.validation.Valid;
+
+import static pe.mil.ejercito.microservice.constants.LoggerConstant.*;
+import static pe.mil.ejercito.microservice.constants.ProcessConstant.*;
 
 /**
  * DivisionStatusController
@@ -33,13 +33,13 @@ import static pe.mil.ejercito.microservice.constants.ProcessConstant.MICROSERVIC
  * @since 26/02/2024
  */
 
+
 @Log4j2
 @RestController
 @RequestMapping(path = MICROSERVICE_PATH_CONTEXT, produces = MediaType.APPLICATION_JSON_VALUE)
 public class DivisionStatusController extends ReactorControllerBase implements IDivisionStatusController {
 
     private final IDivisionStatusDomainService service;
-
 
     public DivisionStatusController(final Response response, IDivisionStatusDomainService service) {
         super(response, "DivisionStatusController");
@@ -48,13 +48,63 @@ public class DivisionStatusController extends ReactorControllerBase implements I
     }
 
     @Override
+    @GetMapping(path = FIND_ALL_DIVISION_STATUS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Object>> doOnFindAllExecute() {
+        return this.service.getAllEntities()
+                .flatMap(current -> super.response(ProcessResponse.success(new GenericResponse<>(current))))
+                .onErrorResume(WebExchangeBindException.class, Mono::error)
+                .doOnSuccess(success -> log.info(MICROSERVICE_CONTROLLER_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+    @Override
     @GetMapping(path = FIND_BY_ID_DIVISION_STATUS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<Object>> doOnFindByIdExecute(@PathVariable(value = "statusId") Long id) {
         return this.service.getByIdEntity(id)
                 .flatMap(current -> super.response(ProcessResponse.success(new GenericResponse<>(current))))
                 .onErrorResume(WebExchangeBindException.class, Mono::error)
-                .doOnSuccess(success -> log.info("success"))
-                .doOnError(throwable -> log.error("error"));
+                .doOnSuccess(success -> log.info(MICROSERVICE_CONTROLLER_DOMAIN_ENTITY_FIND_BY_ID_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
 
+    }
+
+    @Override
+    @GetMapping(path = FIND_BY_UUID_DIVISION_STATUS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Object>> doOnFindByUuIdExecute(@PathVariable(value = "uuId") String uuId) {
+        return this.service.getByUuIdEntity(uuId)
+                .flatMap(current -> super.response(ProcessResponse.success(new GenericResponse<>(current))))
+                .onErrorResume(WebExchangeBindException.class, Mono::error)
+                .doOnSuccess(success -> log.info(MICROSERVICE_CONTROLLER_DOMAIN_ENTITY_FIND_BY_UUID_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+    @Override
+    @PostMapping(path = CREATE_DIVISION_STATUS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Object>> doOnCreateExecute(@RequestBody @Valid DivisionStatusDto dto) {
+        return this.service.saveEntity(dto)
+                .flatMap(current -> super.response(ProcessResponse.success(new GenericResponse<>(current))))
+                .onErrorResume(WebExchangeBindException.class, Mono::error)
+                .doOnSuccess(success -> log.info(MICROSERVICE_CONTROLLER_DOMAIN_ENTITY_CREATE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+    @Override
+    @PutMapping(path = UPDATE_DIVISION_STATUS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Object>> doOnUpdateExecute(@RequestBody @Valid DivisionStatusDto dto) {
+        return this.service.updateEntity(dto)
+                .flatMap(current -> super.response(ProcessResponse.success(new GenericResponse<>(current))))
+                .onErrorResume(WebExchangeBindException.class, Mono::error)
+                .doOnSuccess(success -> log.info(MICROSERVICE_CONTROLLER_DOMAIN_ENTITY_UPDATE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+    @Override
+    @DeleteMapping(path = DELETE_DIVISION_STATUS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Object>> doOnDeleteExecute(@PathVariable(value = "uuId") String uuId) {
+        return this.service.deleteByUuIdEntity(uuId)
+                .flatMap(current -> super.response(ProcessResponse.success(new GenericResponse<>(current))))
+                .onErrorResume(WebExchangeBindException.class, Mono::error)
+                .doOnSuccess(success -> log.info(MICROSERVICE_CONTROLLER_DOMAIN_ENTITY_DELETE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 }

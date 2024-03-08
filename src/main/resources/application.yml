@@ -52,7 +52,7 @@ spring:
 #logging configuration
 logging:
   level:
-    root: ${LOGGING_CONFIGURATION_APP:info}
+    root: ${LOGGING_CONFIGURATION_APP:debug}
 
 #developer configuration:
 developer:
@@ -60,6 +60,8 @@ developer:
 
 #messages configuration:
 microservice:
+  error:
+    handler: ERROR_HANDLER_LINK_NOT_DEFINED
   messages:
     path: "/json/messages.json"
     index: "01"

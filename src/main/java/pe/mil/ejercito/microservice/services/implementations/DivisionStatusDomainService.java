@@ -14,13 +14,13 @@ import pe.mil.ejercito.microservice.dtos.DivisionStatusDto;
 import pe.mil.ejercito.microservice.repositories.IEpDivisionStatusRepository;
 import pe.mil.ejercito.microservice.repositories.entities.EpDivisionStatusEntity;
 import pe.mil.ejercito.microservice.services.contracts.IDivisionStatusDomainService;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.bxcode.tools.loader.constants.BaseLoggerConstant.*;
+import static com.bxcode.tools.loader.constants.BaseLoggerServicesConstant.*;
 
 /**
  * DivisionStatusDomainService
@@ -49,83 +49,96 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
         this.mapper = mapper;
     }
 
-
     @Override
-    public Flux<DivisionStatusDto> getAllEntities() {
-        return null;
+    public Mono<List<DivisionStatusDto>> getAllEntities() {
+        final Iterable<EpDivisionStatusEntity> persistenceEntities = this.repository.findAll();
+        final List<DivisionStatusDto> list = this.mapper.mapperToList(persistenceEntities);
+        return Mono.just(list)
+                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
     @Transactional
     @Override
     public Mono<DivisionStatusDto> getByIdEntity(Long id) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidId(id))) {
-            return Mono.error(() -> new CommonException(MICROSERVICE_COMMON_ERROR_GET_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT, ResponseEnum.INTERNAL_SERVER_ERROR));
+            log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR);
+            return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
         }
 
         final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findById(id);
 
-        return persistenceEntity.map(epDivisionStatusEntity -> Mono.just(this.mapper.mapperToDto(epDivisionStatusEntity))
-                .doOnSuccess(success -> log.debug(MICROSERVICE_COMMON_SUCCESS_GET_DOMAIN_ENTITY_FIND_BY_ID_FORMAT))
-                .doOnError(throwable -> log.error(MICROSERVICE_COMMON_ERROR_GET_DOMAIN_ENTITY_FIND_BY_ID_FORMAT, throwable))
-                .log()).orElseGet(() -> Mono.error(() -> new CommonException(MICROSERVICE_COMMON_ERROR_GET_DOMAIN_ENTITY_FIND_BY_ID_NOT_EXIST_FORMAT, ResponseEnum.INTERNAL_SERVER_ERROR)));
+        return getDivisionStatusDto(
+                persistenceEntity,
+                MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_FORMAT_SUCCESS,
+                MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_NOT_EXIST_FORMAT_ERROR);
     }
 
     @Override
     public Mono<DivisionStatusDto> getByUuIdEntity(String uuId) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(uuId))) {
-            return Mono.error(() -> new Exception(MICROSERVICE_COMMON_ERROR_GET_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT));
+            log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR);
+            return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
         }
 
         final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
 
-        return persistenceEntity.map(epDivisionStatusEntity -> Mono.just(this.mapper.mapperToDto(epDivisionStatusEntity))
-                .doOnSuccess(success -> log.debug(MICROSERVICE_COMMON_SUCCESS_GET_DOMAIN_ENTITY_FIND_BY_UUID_FORMAT, success.toString()))
-                .doOnError(throwable -> log.error(MICROSERVICE_COMMON_ERROR_GET_DOMAIN_ENTITY_FIND_BY_UUID_FORMAT, throwable))
-                .log()).orElseGet(() -> Mono.error(() -> new Exception(MICROSERVICE_COMMON_ERROR_GET_DOMAIN_ENTITY_FIND_BY_UUID_NOT_EXIST_FORMAT)));
+        return getDivisionStatusDto(
+                persistenceEntity,
+                MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_FORMAT_SUCCESS,
+                MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
     }
+
 
     @Override
     public Mono<DivisionStatusDto> saveEntity(DivisionStatusDto dto) {
         return doOnValidateSaveRequest(dto)
                 .flatMap(this::doOnSave)
-                .flatMap(this::doOnValidateSaveResponse)
-                .doOnSuccess(success -> log.info("saveEntity is success"))
-                .doOnError(throwable -> log.error("saveEntity is error {}", throwable.getMessage()))
-                .log();
+                .flatMap(this::doOnValidateResponse)
+                .doOnSuccess(success -> log.info(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
     @Override
     public Mono<DivisionStatusDto> updateEntity(DivisionStatusDto dto) {
-        return doOnValidateSaveRequest(dto)
-                .flatMap(this::doOnSave)
-                .flatMap(this::doOnValidateSaveResponse)
-                .doOnSuccess(success -> log.info("saveEntity is success"))
-                .doOnError(throwable -> log.error("saveEntity is error {}", throwable.getMessage()))
-                .log();
+        return doOnValidateUpdateRequest(dto)
+                .flatMap(this::doOnUpdate)
+                .flatMap(this::doOnValidateResponse)
+                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
     private Mono<DivisionStatusDto> doOnValidateSaveRequest(DivisionStatusDto dto) {
         return IDivisionStatusValidation.doValidationSaveRequest().apply(dto)
                 .flatMap(validation -> {
                     if (ProcessResult.PROCESS_FAILED.equals(validation.getProcessResult())) {
-                        return Mono.error(() -> new CommonException("error validation save request", ResponseEnum.INTERNAL_SERVER_ERROR));
+                        return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_VALIDATION_REQUEST_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_REQUEST_DATA));
                     }
                     return Mono.just(dto);
-                }).doOnSuccess(success -> log.info("doOnValidateSaveRequest is success"))
-                .doOnError(throwable -> log.error("doOnValidateSaveRequest is error {}", throwable.getMessage()))
-                .log();
+                }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_VALIDATION_REQUEST_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-    private Mono<DivisionStatusDto> doOnValidateSaveResponse(DivisionStatusDto dto) {
-        return IDivisionStatusValidation.doValidationSaveResponse().apply(dto)
+    private Mono<DivisionStatusDto> doOnValidateUpdateRequest(DivisionStatusDto dto) {
+        return IDivisionStatusValidation.doValidationUpdateRequest().apply(dto)
                 .flatMap(validation -> {
                     if (ProcessResult.PROCESS_FAILED.equals(validation.getProcessResult())) {
-                        return Mono.error(() -> new CommonException("error validation save response", ResponseEnum.INTERNAL_SERVER_ERROR));
+                        return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_VALIDATION_REQUEST_FORMAT_ERROR, ResponseEnum.INTERNAL_SERVER_ERROR));
                     }
                     return Mono.just(dto);
-                }).doOnSuccess(success -> log.info("doOnValidateSaveResponse is success"))
-                .doOnError(throwable -> log.error("doOnValidateSaveResponse is error {}", throwable.getMessage()))
-                .log();
+                }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_VALIDATION_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+    private Mono<DivisionStatusDto> doOnValidateResponse(DivisionStatusDto dto) {
+        return IDivisionStatusValidation.doOnValidationResponse().apply(dto)
+                .flatMap(validation -> {
+                    if (ProcessResult.PROCESS_FAILED.equals(validation.getProcessResult())) {
+                        return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_OR_UPDATE_VALIDATION_RESPONSE_FORMAT_ERROR, ResponseEnum.INTERNAL_SERVER_ERROR));
+                    }
+                    return Mono.just(dto);
+                }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_OR_UPDATE_VALIDATION_RESPONSE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
     private Mono<DivisionStatusDto> doOnSave(DivisionStatusDto dto) {
@@ -135,14 +148,65 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
                     persistenceEntity.setUuId(UUID.randomUUID().toString());
                     final EpDivisionStatusEntity entityResult = this.repository.save(persistenceEntity);
                     return Mono.just(this.mapper.mapperToDto(entityResult));
-                }).doOnSuccess(success -> log.info("doOnSave is success"))
-                .doOnError(throwable -> log.error("doOnSave is error {}", throwable.getMessage()))
-                .log();
+                }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_SAVE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+    private Mono<DivisionStatusDto> doOnUpdate(DivisionStatusDto dto) {
+        return Mono.just(dto)
+                .flatMap(request -> {
+
+                    if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(request.getUuId()))) {
+                        log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR);
+                        return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
+                    }
+
+                    final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findByUuId(request.getUuId());
+                    if (persistenceEntity.isEmpty()) {
+                        log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
+                        return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY));
+                    }
+
+                    final EpDivisionStatusEntity entityUpdate = persistenceEntity.get();
+                    entityUpdate.setCode(request.getCode());
+                    entityUpdate.setName(request.getName());
+                    entityUpdate.setDescription(request.getDescription());
+                    final EpDivisionStatusEntity entityResult = this.repository.save(entityUpdate);
+                    return Mono.just(this.mapper.mapperToDto(entityResult));
+                }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
 
     @Override
-    public Boolean deleteEntity(DivisionStatusDto entity) {
-        return null;
+    public Mono<DivisionStatusDto> deleteByUuIdEntity(String uuId) {
+        if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(uuId))) {
+            log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR);
+            return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
+        }
+
+        final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
+
+        if (persistenceEntity.isEmpty()) {
+            log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
+            return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY));
+        }
+
+        this.repository.delete(persistenceEntity.get());
+        return Mono.just(this.mapper.mapperToDto(persistenceEntity.get()))
+                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+
+    private Mono<DivisionStatusDto> getDivisionStatusDto(Optional<EpDivisionStatusEntity> persistenceEntity, String successMessage, String messageExist) {
+        return persistenceEntity.map(epDivisionStatusEntity -> Mono.just(this.mapper.mapperToDto(epDivisionStatusEntity))
+                        .doOnSuccess(success -> log.debug(successMessage))
+                        .doOnError(throwable -> log.error(throwable.getMessage()))
+                        .log())
+                .orElseGet(() -> Mono.error(() -> {
+                    log.error(messageExist);
+                    return new CommonException(messageExist, ResponseEnum.NOT_FOUNT_ENTITY);
+                }));
     }
 }

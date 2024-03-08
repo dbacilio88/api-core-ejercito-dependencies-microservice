@@ -28,12 +28,12 @@ import java.util.List;
         nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
 )
 public interface IDivisionStatusMapper {
-
     @Mapping(target = "id", source = "id")
     @Mapping(target = "uuId", source = "uuId")
     @Mapping(target = "code", source = "code")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "description", source = "description")
+    @Mapping(target = "epDivisions", ignore = true)
     EpDivisionStatusEntity mapperToEntity(DivisionStatusDto source);
 
     @Mapping(target = "id", source = "id")
@@ -43,5 +43,5 @@ public interface IDivisionStatusMapper {
     @Mapping(target = "description", source = "description")
     DivisionStatusDto mapperToDto(EpDivisionStatusEntity source);
 
-    List<DivisionStatusDto> mapperToList(List<EpDivisionStatusEntity> entities);
+    List<DivisionStatusDto> mapperToList(Iterable<EpDivisionStatusEntity> entities);
 }

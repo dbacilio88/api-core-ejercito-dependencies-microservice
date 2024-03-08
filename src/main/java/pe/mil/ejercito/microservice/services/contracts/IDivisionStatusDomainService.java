@@ -2,8 +2,9 @@ package pe.mil.ejercito.microservice.services.contracts;
 
 import com.bxcode.tools.loader.services.interfaces.*;
 import pe.mil.ejercito.microservice.dtos.DivisionStatusDto;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 /**
  * IDivisionStatusDomainService
@@ -19,10 +20,10 @@ import reactor.core.publisher.Mono;
  * @since 27/02/2024
  */
 public interface IDivisionStatusDomainService extends
-        IGetAllDomainEntity<Flux<DivisionStatusDto>>,
+        IGetAllDomainEntity<Mono<List<DivisionStatusDto>>>,
         IGetByIdDomainEntity<Mono<DivisionStatusDto>, Long>,
         IGetByUuIdDomainEntity<Mono<DivisionStatusDto>, String>,
         ISaveDomainEntity<Mono<DivisionStatusDto>, DivisionStatusDto>,
         IUpdateDomainEntity<Mono<DivisionStatusDto>, DivisionStatusDto>,
-        IDeleteDomainEntity<DivisionStatusDto> {
+        IDeleteDomainEntity<Mono<DivisionStatusDto>,String> {
 }

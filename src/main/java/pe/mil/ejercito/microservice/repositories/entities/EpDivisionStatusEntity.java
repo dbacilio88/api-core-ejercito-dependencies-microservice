@@ -1,7 +1,6 @@
 package pe.mil.ejercito.microservice.repositories.entities;
 
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,7 +35,7 @@ import java.util.Set;
 public class EpDivisionStatusEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EP_DIVISION_STATUS_SEQ")
-    @SequenceGenerator(name = "EP_DIVISION_STATUS_SEQ", sequenceName = "EP_DIVISION_STATUS_SEQ")
+    @SequenceGenerator(name = "EP_DIVISION_STATUS_SEQ", sequenceName = "EP_DIVISION_STATUS_SEQ", allocationSize = 1)
     @Column(name = "DS_ID", nullable = false)
     private Long id;
 
@@ -45,12 +44,12 @@ public class EpDivisionStatusEntity {
     @Column(name = "DS_UUID", nullable = false, length = 36)
     private String uuId;
 
-    @Size(max = 9)
+    @Size(max = 11)
     @NotNull
     @Column(name = "DS_CODE", nullable = false, length = 9)
     private String code;
 
-    @Size(max = 9)
+    @Size(max = 11)
     @NotNull
     @Column(name = "DS_NAME", nullable = false, length = 9)
     private String name;
@@ -62,5 +61,4 @@ public class EpDivisionStatusEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "diStatus")
     private Set<EpDivisionEntity> epDivisions = new LinkedHashSet<>();
-
 }

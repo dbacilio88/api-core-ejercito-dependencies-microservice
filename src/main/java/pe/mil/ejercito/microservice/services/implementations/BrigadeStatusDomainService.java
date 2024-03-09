@@ -39,20 +39,20 @@ import static com.bxcode.tools.loader.constants.BaseLoggerServicesConstant.*;
 @Service
 public class BrigadeStatusDomainService extends ReactorServiceBase implements IBrigadeStatusDomainService {
 
-    private final IEpBrigadeStatusRepository repository;
-    private final IBrigadeStatusMapper mapper;
+    private final IEpBrigadeStatusRepository brigadeStatusRepository;
+    private final IBrigadeStatusMapper brigadeStatusMapper;
 
-    public BrigadeStatusDomainService(final IEpBrigadeStatusRepository repository,
-                                      final IBrigadeStatusMapper mapper) {
-        super("DivisionStatusDomainService");
-        this.repository = repository;
-        this.mapper = mapper;
+    public BrigadeStatusDomainService(final IEpBrigadeStatusRepository brigadeStatusRepository,
+                                      final IBrigadeStatusMapper brigadeStatusMapper) {
+        super("BrigadeStatusDomainService");
+        this.brigadeStatusRepository = brigadeStatusRepository;
+        this.brigadeStatusMapper = brigadeStatusMapper;
     }
 
     @Override
     public Mono<List<BrigadeStatusDto>> getAllEntities() {
-        final Iterable<EpBrigadeStatusEntity> persistenceEntities = this.repository.findAll();
-        final List<BrigadeStatusDto> list = this.mapper.mapperToList(persistenceEntities);
+        final Iterable<EpBrigadeStatusEntity> persistenceEntities = this.brigadeStatusRepository.findAll();
+        final List<BrigadeStatusDto> list = this.brigadeStatusMapper.mapperToList(persistenceEntities);
         return Mono.just(list)
                 .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
@@ -66,7 +66,7 @@ public class BrigadeStatusDomainService extends ReactorServiceBase implements IB
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
         }
 
-        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findById(id);
+        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.brigadeStatusRepository.findById(id);
 
         return getBrigadeStatusDto(
                 persistenceEntity,
@@ -81,7 +81,7 @@ public class BrigadeStatusDomainService extends ReactorServiceBase implements IB
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
         }
 
-        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.brigadeStatusRepository.findByUuId(uuId);
 
         return getBrigadeStatusDto(
                 persistenceEntity,
@@ -121,10 +121,10 @@ public class BrigadeStatusDomainService extends ReactorServiceBase implements IB
     private Mono<BrigadeStatusDto> doOnSave(BrigadeStatusDto dto) {
         return Mono.just(dto)
                 .flatMap(request -> {
-                    final EpBrigadeStatusEntity persistenceEntity = this.mapper.mapperToEntity(request);
+                    final EpBrigadeStatusEntity persistenceEntity = this.brigadeStatusMapper.mapperToEntity(request);
                     persistenceEntity.setUuId(UUID.randomUUID().toString());
-                    final EpBrigadeStatusEntity entityResult = this.repository.save(persistenceEntity);
-                    return Mono.just(this.mapper.mapperToDto(entityResult));
+                    final EpBrigadeStatusEntity entityResult = this.brigadeStatusRepository.save(persistenceEntity);
+                    return Mono.just(this.brigadeStatusMapper.mapperToDto(entityResult));
                 }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_SAVE_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
@@ -138,7 +138,7 @@ public class BrigadeStatusDomainService extends ReactorServiceBase implements IB
                         return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
                     }
 
-                    final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findByUuId(request.getUuId());
+                    final Optional<EpBrigadeStatusEntity> persistenceEntity = this.brigadeStatusRepository.findByUuId(request.getUuId());
                     if (persistenceEntity.isEmpty()) {
                         log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                         return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY));
@@ -148,8 +148,8 @@ public class BrigadeStatusDomainService extends ReactorServiceBase implements IB
                     entityUpdate.setBsCode(request.getCode());
                     entityUpdate.setBsName(request.getName());
                     entityUpdate.setBsDescription(request.getDescription());
-                    final EpBrigadeStatusEntity entityResult = this.repository.save(entityUpdate);
-                    return Mono.just(this.mapper.mapperToDto(entityResult));
+                    final EpBrigadeStatusEntity entityResult = this.brigadeStatusRepository.save(entityUpdate);
+                    return Mono.just(this.brigadeStatusMapper.mapperToDto(entityResult));
                 }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
@@ -162,25 +162,24 @@ public class BrigadeStatusDomainService extends ReactorServiceBase implements IB
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
         }
 
-        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.brigadeStatusRepository.findByUuId(uuId);
 
         if (persistenceEntity.isEmpty()) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY));
         }
 
-        this.repository.delete(persistenceEntity.get());
-        return Mono.just(this.mapper.mapperToDto(persistenceEntity.get()))
+        this.brigadeStatusRepository.delete(persistenceEntity.get());
+        return Mono.just(this.brigadeStatusMapper.mapperToDto(persistenceEntity.get()))
                 .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
 
-    private Mono<BrigadeStatusDto> getBrigadeStatusDto(Optional<EpBrigadeStatusEntity> persistenceEntity, String successMessage, String messageExist) {
-        return persistenceEntity.map(entity -> Mono.just(this.mapper.mapperToDto(entity))
+    private Mono<BrigadeStatusDto> getBrigadeStatusDto(Optional<EpBrigadeStatusEntity> bsEntity, String successMessage, String messageExist) {
+        return bsEntity.map(brigadeStatus -> Mono.just(this.brigadeStatusMapper.mapperToDto(brigadeStatus))
                         .doOnSuccess(success -> log.debug(successMessage))
-                        .doOnError(throwable -> log.error(throwable.getMessage()))
-                        .log())
+                        .doOnError(throwable -> log.error(throwable.getMessage())))
                 .orElseGet(() -> Mono.error(() -> {
                     log.error(messageExist);
                     return new CommonException(messageExist, ResponseEnum.NOT_FOUNT_ENTITY);

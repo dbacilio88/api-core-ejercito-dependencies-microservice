@@ -24,7 +24,7 @@ import java.util.Optional;
 @Repository
 public interface IEpBrigadeRepository extends JpaRepository<EpBrigadeEntity, Long> {
     @Query(value = "SELECT b FROM EpBrigadeEntity b LEFT JOIN FETCH b.brStatus LEFT JOIN FETCH b.brDivision WHERE b.uuId = :uuId")
-    Optional<EpBrigadeEntity> findByUuId(String uuId);
+    Optional<EpBrigadeEntity> findBrigadeByUuId(String uuId);
 
     @Query(value = "SELECT b FROM EpBrigadeEntity b LEFT JOIN FETCH b.brStatus  LEFT JOIN FETCH b.brDivision")
     List<EpBrigadeEntity> findAllCustom();

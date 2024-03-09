@@ -42,23 +42,23 @@ import static com.bxcode.tools.loader.constants.BaseLoggerServicesConstant.*;
 @Service
 public class DivisionDomainService extends ReactorServiceBase implements IDivisionDomainService {
 
-    private final IEpDivisionRepository repository;
-    private final IEpDivisionStatusRepository statusRepository;
-    private final IDivisionMapper mapper;
+    private final IEpDivisionRepository divisionRepository;
+    private final IEpDivisionStatusRepository divisionStatusRepository;
+    private final IDivisionMapper divisionMapper;
 
-    public DivisionDomainService(final IEpDivisionRepository repository,
-                                 final IEpDivisionStatusRepository statusRepository,
-                                 final IDivisionMapper mapper) {
+    public DivisionDomainService(final IEpDivisionRepository divisionRepository,
+                                 final IEpDivisionStatusRepository divisionStatusRepository,
+                                 final IDivisionMapper divisionMapper) {
         super("DivisionDomainService");
-        this.repository = repository;
-        this.statusRepository = statusRepository;
-        this.mapper = mapper;
+        this.divisionRepository = divisionRepository;
+        this.divisionStatusRepository = divisionStatusRepository;
+        this.divisionMapper = divisionMapper;
     }
 
     @Override
     public Mono<List<DivisionDto>> getAllEntities() {
-        final Iterable<EpDivisionEntity> persistenceEntities = this.repository.findAllCustom();
-        final List<DivisionDto> list = this.mapper.mapperToList(persistenceEntities);
+        final Iterable<EpDivisionEntity> persistenceEntities = this.divisionRepository.findAllCustom();
+        final List<DivisionDto> list = this.divisionMapper.mapperToList(persistenceEntities);
         return Mono.just(list)
                 .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
@@ -72,7 +72,7 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
         }
 
-        final Optional<EpDivisionEntity> persistenceEntity = this.repository.findById(id);
+        final Optional<EpDivisionEntity> persistenceEntity = this.divisionRepository.findById(id);
 
         return getDivisionDto(
                 persistenceEntity,
@@ -87,7 +87,7 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
         }
 
-        final Optional<EpDivisionEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpDivisionEntity> persistenceEntity = this.divisionRepository.findDivisionByUuId(uuId);
 
         return getDivisionDto(
                 persistenceEntity,
@@ -126,9 +126,9 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
     private Mono<DivisionDto> doOnSave(DivisionDto dto) {
         return Mono.just(dto)
                 .flatMap(request -> {
-                    final EpDivisionEntity persistenceEntity = this.mapper.mapperToEntity(request);
+                    final EpDivisionEntity persistenceEntity = this.divisionMapper.mapperToEntity(request);
 
-                    final Optional<EpDivisionStatusEntity> divisionStatusEntity = this.statusRepository.findByUuId(request.getStatus());
+                    final Optional<EpDivisionStatusEntity> divisionStatusEntity = this.divisionStatusRepository.findByUuId(request.getStatus());
 
                     if (divisionStatusEntity.isEmpty()) {
                         log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
@@ -139,8 +139,8 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
                     persistenceEntity.setDiStatus(divisionStatusEntity.get());
                     persistenceEntity.setDiCreatedDate(Instant.now());
 
-                    final EpDivisionEntity entityResult = this.repository.save(persistenceEntity);
-                    return Mono.just(this.mapper.mapperToDto(entityResult));
+                    final EpDivisionEntity entityResult = this.divisionRepository.save(persistenceEntity);
+                    return Mono.just(this.divisionMapper.mapperToDto(entityResult));
                 }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_SAVE_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
@@ -154,7 +154,7 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
                         return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
                     }
 
-                    final Optional<EpDivisionEntity> persistenceEntity = this.repository.findByUuId(request.getUuId());
+                    final Optional<EpDivisionEntity> persistenceEntity = this.divisionRepository.findDivisionByUuId(request.getUuId());
 
                     if (persistenceEntity.isEmpty()) {
                         log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
@@ -162,7 +162,7 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
                     }
 
 
-                    final Optional<EpDivisionStatusEntity> divisionStatusEntity = this.statusRepository.findByUuId(request.getStatus());
+                    final Optional<EpDivisionStatusEntity> divisionStatusEntity = this.divisionStatusRepository.findByUuId(request.getStatus());
 
                     if (divisionStatusEntity.isEmpty()) {
                         log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
@@ -175,9 +175,9 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
                     entityUpdate.setName(request.getName());
                     entityUpdate.setDescription(request.getDescription());
                     entityUpdate.setDiUpdatedDate(Instant.now());
-                    final EpDivisionEntity entityResult = this.repository.save(entityUpdate);
+                    final EpDivisionEntity entityResult = this.divisionRepository.save(entityUpdate);
                     entityResult.setDiStatus(divisionStatusEntity.get());
-                    return Mono.just(this.mapper.mapperToDto(entityResult));
+                    return Mono.just(this.divisionMapper.mapperToDto(entityResult));
                 }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
@@ -190,22 +190,22 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
         }
 
-        final Optional<EpDivisionEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpDivisionEntity> persistenceEntity = this.divisionRepository.findDivisionByUuId(uuId);
 
         if (persistenceEntity.isEmpty()) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY));
         }
 
-        this.repository.delete(persistenceEntity.get());
-        return Mono.just(this.mapper.mapperToDto(persistenceEntity.get()))
+        this.divisionRepository.delete(persistenceEntity.get());
+        return Mono.just(this.divisionMapper.mapperToDto(persistenceEntity.get()))
                 .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
 
-    private Mono<DivisionDto> getDivisionDto(Optional<EpDivisionEntity> persistenceEntity, String successMessage, String messageExist) {
-        return persistenceEntity.map(entity -> Mono.just(this.mapper.mapperToDto(entity))
+    private Mono<DivisionDto> getDivisionDto(Optional<EpDivisionEntity> dEntity, String successMessage, String messageExist) {
+        return dEntity.map(division -> Mono.just(this.divisionMapper.mapperToDto(division))
                         .doOnSuccess(success -> log.debug(successMessage))
                         .doOnError(throwable -> log.error(throwable.getMessage())))
                 .orElseGet(() -> Mono.error(() -> {

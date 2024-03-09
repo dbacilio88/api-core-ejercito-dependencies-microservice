@@ -49,21 +49,22 @@ public class EpBrigadeEntity {
     @ToString.Exclude
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "BR_DIVISION_ID", nullable = false)
     private EpDivisionEntity brDivision;
 
     @Size(max = 4)
     @NotNull
     @Column(name = "BR_CODE", nullable = false, length = 4)
-    private String code;
+    private String brCode;
 
     @Size(max = 60)
     @NotNull
     @Column(name = "BR_NAME", nullable = false, length = 60)
-    private String name;
+    private String brName;
 
     @Size(max = 120)
     @Column(name = "BR_DESCRIPTION", length = 120)
-    private String description;
+    private String brDescription;
 
     @NotNull
     @Column(name = "BR_CREATED_DATE", nullable = false)
@@ -74,7 +75,13 @@ public class EpBrigadeEntity {
 
     @Builder.Default
     @ToString.Exclude
-    @OneToMany(mappedBy = "unBrigadeStatus")
+    @OneToMany(mappedBy = "unBrigade")
     private Set<EpUnitEntity> epUnits = new LinkedHashSet<>();
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "BR_STATUS", nullable = false)
+    @ToString.Exclude
+    private EpBrigadeStatusEntity brStatus;
 
 }

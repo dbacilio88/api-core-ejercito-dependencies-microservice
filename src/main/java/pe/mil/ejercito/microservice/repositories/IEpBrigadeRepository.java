@@ -1,8 +1,13 @@
 package pe.mil.ejercito.microservice.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pe.mil.ejercito.microservice.repositories.entities.EpBrigadeEntity;
+
+import java.util.List;
+import java.util.Optional;
+
 /**
  * IEpBrigadeRepository
  * <p>
@@ -18,4 +23,9 @@ import pe.mil.ejercito.microservice.repositories.entities.EpBrigadeEntity;
  */
 @Repository
 public interface IEpBrigadeRepository extends JpaRepository<EpBrigadeEntity, Long> {
+    @Query(value = "SELECT b FROM EpBrigadeEntity b LEFT JOIN FETCH b.brStatus LEFT JOIN FETCH b.brDivision WHERE b.uuId = :uuId")
+    Optional<EpBrigadeEntity> findByUuId(String uuId);
+
+    @Query(value = "SELECT b FROM EpBrigadeEntity b LEFT JOIN FETCH b.brStatus  LEFT JOIN FETCH b.brDivision")
+    List<EpBrigadeEntity> findAllCustom();
 }

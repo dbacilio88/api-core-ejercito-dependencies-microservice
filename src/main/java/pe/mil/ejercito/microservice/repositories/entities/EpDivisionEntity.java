@@ -53,17 +53,17 @@ public class EpDivisionEntity {
 
     @Size(max = 2)
     @NotNull
-    @Column(name = "DI_CODE", nullable = false, length = 2)//COTE
+    @Column(name = "DI_CODE", nullable = false, length = 2)
     private String code;
 
     @Size(max = 60)
     @NotNull
     @Column(name = "DI_NAME", nullable = false, length = 60)
-    private String name;//COMANDO DE TERRE
+    private String name;
 
     @Size(max = 120)
     @Column(name = "DI_DESCRIPTION", length = 120)
-    private String description;//COMANDO DE TERRE
+    private String description;
 
     @NotNull
     @Column(name = "DI_CREATED_DATE", nullable = false)

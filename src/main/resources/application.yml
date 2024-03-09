@@ -58,10 +58,17 @@ logging:
 developer:
   nickname: cbacilio
 
-#messages configuration:
+#microservice configuration:
 microservice:
-  error:
-    handler: ERROR_HANDLER_LINK_NOT_DEFINED
+  key: 524be2fc-9995-4ab0-98c6-8d2e16502522
+  datasource:
+    name: microservice.datasource.ep.solutions
+    encryption-enable: true
+    encryption-key: true
+  configuration:
+    domain: http://localhost:8080
+    type: microservice.configuration.type.json.file
+  error-handler: ERROR_HANDLER_LINK_NOT_DEFINED
   messages:
     path: "/json/messages.json"
     index: "01"

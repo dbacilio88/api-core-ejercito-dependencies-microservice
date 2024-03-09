@@ -46,21 +46,22 @@ public class EpUnitEntity {
     @ToString.Exclude
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private EpBrigadeEntity unBrigadeStatus;
+    @JoinColumn(name = "UN_BRIGADE_ID", nullable = false)
+    private EpBrigadeEntity unBrigade;
 
     @Size(max = 6)
     @NotNull
     @Column(name = "UN_CODE", nullable = false, length = 6)
-    private String code;
+    private String unCode;
 
     @Size(max = 60)
     @NotNull
     @Column(name = "UN_NAME", nullable = false, length = 60)
-    private String name;
+    private String unName;
 
     @Size(max = 120)
     @Column(name = "UN_DESCRIPTION", length = 120)
-    private String description;
+    private String unDescription;
 
     @NotNull
     @Column(name = "UN_CREATED_DATE", nullable = false)
@@ -68,5 +69,11 @@ public class EpUnitEntity {
 
     @Column(name = "UN_UPDATED_DATE")
     private Instant unUpdatedDate;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "UN_STATUS", nullable = false)
+    @ToString.Exclude
+    private EpUnitStatusEntity unStatus;
 
 }

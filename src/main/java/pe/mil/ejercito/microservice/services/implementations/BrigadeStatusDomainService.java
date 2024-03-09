@@ -8,12 +8,12 @@ import com.bxcode.tools.loader.services.base.ReactorServiceBase;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.mil.ejercito.microservice.components.mappers.IDivisionStatusMapper;
-import pe.mil.ejercito.microservice.components.validations.IDivisionStatusValidation;
-import pe.mil.ejercito.microservice.dtos.DivisionStatusDto;
-import pe.mil.ejercito.microservice.repositories.IEpDivisionStatusRepository;
-import pe.mil.ejercito.microservice.repositories.entities.EpDivisionStatusEntity;
-import pe.mil.ejercito.microservice.services.contracts.IDivisionStatusDomainService;
+import pe.mil.ejercito.microservice.components.mappers.IBrigadeStatusMapper;
+import pe.mil.ejercito.microservice.components.validations.IBrigadeStatusValidation;
+import pe.mil.ejercito.microservice.dtos.BrigadeStatusDto;
+import pe.mil.ejercito.microservice.repositories.IEpBrigadeStatusRepository;
+import pe.mil.ejercito.microservice.repositories.entities.EpBrigadeStatusEntity;
+import pe.mil.ejercito.microservice.services.contracts.IBrigadeStatusDomainService;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -23,9 +23,9 @@ import java.util.UUID;
 import static com.bxcode.tools.loader.constants.BaseLoggerServicesConstant.*;
 
 /**
- * DivisionStatusDomainService
+ * BrigadeStatusDomainService
  * <p>
- * DivisionStatusDomainService class.
+ * BrigadeStatusDomainService class.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE BXCODE APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -37,22 +37,22 @@ import static com.bxcode.tools.loader.constants.BaseLoggerServicesConstant.*;
  */
 @Log4j2
 @Service
-public class DivisionStatusDomainService extends ReactorServiceBase implements IDivisionStatusDomainService {
+public class BrigadeStatusDomainService extends ReactorServiceBase implements IBrigadeStatusDomainService {
 
-    private final IEpDivisionStatusRepository repository;
-    private final IDivisionStatusMapper mapper;
+    private final IEpBrigadeStatusRepository repository;
+    private final IBrigadeStatusMapper mapper;
 
-    public DivisionStatusDomainService(final IEpDivisionStatusRepository repository,
-                                       final IDivisionStatusMapper mapper) {
+    public BrigadeStatusDomainService(final IEpBrigadeStatusRepository repository,
+                                      final IBrigadeStatusMapper mapper) {
         super("DivisionStatusDomainService");
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
-    public Mono<List<DivisionStatusDto>> getAllEntities() {
-        final Iterable<EpDivisionStatusEntity> persistenceEntities = this.repository.findAll();
-        final List<DivisionStatusDto> list = this.mapper.mapperToList(persistenceEntities);
+    public Mono<List<BrigadeStatusDto>> getAllEntities() {
+        final Iterable<EpBrigadeStatusEntity> persistenceEntities = this.repository.findAll();
+        final List<BrigadeStatusDto> list = this.mapper.mapperToList(persistenceEntities);
         return Mono.just(list)
                 .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
@@ -60,30 +60,30 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
 
     @Transactional
     @Override
-    public Mono<DivisionStatusDto> getByIdEntity(Long id) {
+    public Mono<BrigadeStatusDto> getByIdEntity(Long id) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidId(id))) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
         }
 
-        final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findById(id);
+        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findById(id);
 
-        return getDivisionStatusDto(
+        return getBrigadeStatusDto(
                 persistenceEntity,
                 MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_FORMAT_SUCCESS,
                 MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_NOT_EXIST_FORMAT_ERROR);
     }
 
     @Override
-    public Mono<DivisionStatusDto> getByUuIdEntity(String uuId) {
+    public Mono<BrigadeStatusDto> getByUuIdEntity(String uuId) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(uuId))) {
             log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
         }
 
-        final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
 
-        return getDivisionStatusDto(
+        return getBrigadeStatusDto(
                 persistenceEntity,
                 MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_FORMAT_SUCCESS,
                 MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
@@ -91,7 +91,7 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
 
 
     @Override
-    public Mono<DivisionStatusDto> saveEntity(DivisionStatusDto dto) {
+    public Mono<BrigadeStatusDto> saveEntity(BrigadeStatusDto dto) {
         return doOnSave(dto)
                 .flatMap(this::doOnValidateResponse)
                 .doOnSuccess(success -> log.info(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FORMAT_SUCCESS))
@@ -99,7 +99,7 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
     }
 
     @Override
-    public Mono<DivisionStatusDto> updateEntity(DivisionStatusDto dto) {
+    public Mono<BrigadeStatusDto> updateEntity(BrigadeStatusDto dto) {
         return doOnUpdate(dto)
                 .flatMap(this::doOnValidateResponse)
                 .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FORMAT_SUCCESS))
@@ -107,8 +107,8 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
     }
 
 
-    private Mono<DivisionStatusDto> doOnValidateResponse(DivisionStatusDto dto) {
-        return IDivisionStatusValidation.doOnValidationResponse().apply(dto)
+    private Mono<BrigadeStatusDto> doOnValidateResponse(BrigadeStatusDto dto) {
+        return IBrigadeStatusValidation.doOnValidationResponse().apply(dto)
                 .flatMap(validation -> {
                     if (ProcessResult.PROCESS_FAILED.equals(validation.getProcessResult())) {
                         return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_OR_UPDATE_VALIDATION_RESPONSE_FORMAT_ERROR, ResponseEnum.INTERNAL_SERVER_ERROR));
@@ -118,18 +118,18 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-    private Mono<DivisionStatusDto> doOnSave(DivisionStatusDto dto) {
+    private Mono<BrigadeStatusDto> doOnSave(BrigadeStatusDto dto) {
         return Mono.just(dto)
                 .flatMap(request -> {
-                    final EpDivisionStatusEntity persistenceEntity = this.mapper.mapperToEntity(request);
+                    final EpBrigadeStatusEntity persistenceEntity = this.mapper.mapperToEntity(request);
                     persistenceEntity.setUuId(UUID.randomUUID().toString());
-                    final EpDivisionStatusEntity entityResult = this.repository.save(persistenceEntity);
+                    final EpBrigadeStatusEntity entityResult = this.repository.save(persistenceEntity);
                     return Mono.just(this.mapper.mapperToDto(entityResult));
                 }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_SAVE_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-    private Mono<DivisionStatusDto> doOnUpdate(DivisionStatusDto dto) {
+    private Mono<BrigadeStatusDto> doOnUpdate(BrigadeStatusDto dto) {
         return Mono.just(dto)
                 .flatMap(request -> {
 
@@ -138,17 +138,17 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
                         return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_UUID));
                     }
 
-                    final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findByUuId(request.getUuId());
+                    final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findByUuId(request.getUuId());
                     if (persistenceEntity.isEmpty()) {
                         log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                         return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY));
                     }
 
-                    final EpDivisionStatusEntity entityUpdate = persistenceEntity.get();
-                    entityUpdate.setDsCode(request.getCode());
-                    entityUpdate.setDsName(request.getName());
-                    entityUpdate.setDsDescription(request.getDescription());
-                    final EpDivisionStatusEntity entityResult = this.repository.save(entityUpdate);
+                    final EpBrigadeStatusEntity entityUpdate = persistenceEntity.get();
+                    entityUpdate.setBsCode(request.getCode());
+                    entityUpdate.setBsName(request.getName());
+                    entityUpdate.setBsDescription(request.getDescription());
+                    final EpBrigadeStatusEntity entityResult = this.repository.save(entityUpdate);
                     return Mono.just(this.mapper.mapperToDto(entityResult));
                 }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));
@@ -156,13 +156,13 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
 
 
     @Override
-    public Mono<DivisionStatusDto> deleteByUuIdEntity(String uuId) {
+    public Mono<BrigadeStatusDto> deleteByUuIdEntity(String uuId) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(uuId))) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ID));
         }
 
-        final Optional<EpDivisionStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpBrigadeStatusEntity> persistenceEntity = this.repository.findByUuId(uuId);
 
         if (persistenceEntity.isEmpty()) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
@@ -176,7 +176,7 @@ public class DivisionStatusDomainService extends ReactorServiceBase implements I
     }
 
 
-    private Mono<DivisionStatusDto> getDivisionStatusDto(Optional<EpDivisionStatusEntity> persistenceEntity, String successMessage, String messageExist) {
+    private Mono<BrigadeStatusDto> getBrigadeStatusDto(Optional<EpBrigadeStatusEntity> persistenceEntity, String successMessage, String messageExist) {
         return persistenceEntity.map(entity -> Mono.just(this.mapper.mapperToDto(entity))
                         .doOnSuccess(success -> log.debug(successMessage))
                         .doOnError(throwable -> log.error(throwable.getMessage()))

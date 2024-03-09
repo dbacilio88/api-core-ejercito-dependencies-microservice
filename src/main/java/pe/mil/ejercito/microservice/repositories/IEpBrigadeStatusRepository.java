@@ -2,14 +2,14 @@ package pe.mil.ejercito.microservice.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pe.mil.ejercito.microservice.repositories.entities.EpDivisionStatusEntity;
+import pe.mil.ejercito.microservice.repositories.entities.EpBrigadeStatusEntity;
 
 import java.util.Optional;
 
 /**
- * IEpDivisionStatusRepository
+ * IEpBrigadeStatusRepository
  * <p>
- * IEpDivisionStatusRepository interface.
+ * IEpBrigadeStatusRepository interface.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE BXCODE APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 
 @Repository
-public interface IEpDivisionStatusRepository extends JpaRepository<EpDivisionStatusEntity, Long> {
+public interface IEpBrigadeStatusRepository extends JpaRepository<EpBrigadeStatusEntity, Long> {
 
-    Optional<EpDivisionStatusEntity> findByUuId(String uuId);
+    Optional<EpBrigadeStatusEntity> findByUuId(String uuId);
 }

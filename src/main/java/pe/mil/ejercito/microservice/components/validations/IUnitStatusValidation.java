@@ -5,7 +5,7 @@ import com.bxcode.tools.loader.componets.helpers.CommonRequestHelper;
 import com.bxcode.tools.loader.componets.validations.ProcessValidationResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pe.mil.ejercito.microservice.dtos.DivisionStatusDto;
+import pe.mil.ejercito.microservice.dtos.UnitStatusDto;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
@@ -16,9 +16,9 @@ import java.util.function.Function;
 import static pe.mil.ejercito.microservice.constants.LoggerConstant.MICROSERVICE_PROCESS_VALIDATION_PARAMETER_REQUIRED;
 
 /**
- * IDivisionStatusValidation
+ * IUnitStatusValidation
  * <p>
- * IDivisionStatusValidation interface.
+ * IUnitStatusValidation interface.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE BXCODE APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -30,15 +30,15 @@ import static pe.mil.ejercito.microservice.constants.LoggerConstant.MICROSERVICE
  */
 
 @FunctionalInterface
-public interface IDivisionStatusValidation extends Function<DivisionStatusDto, Mono<ProcessValidationResult>> {
-    Logger log = LogManager.getLogger(IDivisionStatusValidation.class);
+public interface IUnitStatusValidation extends Function<UnitStatusDto, Mono<ProcessValidationResult>> {
+    Logger log = LogManager.getLogger(IUnitStatusValidation.class);
 
-    static IDivisionStatusValidation doOnValidationResponse() {
-        return divisionStatusResponse -> {
+    static IUnitStatusValidation doOnValidationResponse() {
+        return unitStatusResponse -> {
             ProcessValidationResult validationResult = ProcessValidationResult.builder().processResult(ProcessResult.PROCESS_SUCCESS).build();
             List<String> errors = new ArrayList<>();
 
-            if (Boolean.TRUE.equals(inValidDivisionStatusParameter(divisionStatusResponse))) {
+            if (Boolean.TRUE.equals(inValidUnitStatusParameter(unitStatusResponse))) {
                 log.error(MICROSERVICE_PROCESS_VALIDATION_PARAMETER_REQUIRED);
                 errors.add(MICROSERVICE_PROCESS_VALIDATION_PARAMETER_REQUIRED);
             }
@@ -51,13 +51,12 @@ public interface IDivisionStatusValidation extends Function<DivisionStatusDto, M
         };
     }
 
-    static boolean inValidDivisionStatusParameter(final DivisionStatusDto valid) {
+    static boolean inValidUnitStatusParameter(final UnitStatusDto valid) {
         return Objects.isNull(valid.getId())
                 || Objects.isNull(valid.getUuId())
                 || CommonRequestHelper.isInvalidId(valid.getId())
-                || CommonRequestHelper.isInvalidUuId(valid.getUuId())
-                || Objects.isNull(valid.getName())
                 || Objects.isNull(valid.getCode())
+                || Objects.isNull(valid.getName())
                 || Objects.isNull(valid.getDescription());
 
     }

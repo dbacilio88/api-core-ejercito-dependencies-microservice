@@ -4,15 +4,15 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.NullValueMappingStrategy;
-import pe.mil.ejercito.microservice.dtos.DivisionStatusDto;
-import pe.mil.ejercito.microservice.repositories.entities.EpDivisionStatusEntity;
+import pe.mil.ejercito.microservice.dtos.BrigadeStatusDto;
+import pe.mil.ejercito.microservice.repositories.entities.EpBrigadeStatusEntity;
 
 import java.util.List;
 
 /**
- * IDivisionStatusMapper
+ * IBrigadeStatusMapper
  * <p>
- * IDivisionStatusMapper interface.
+ * IBrigadeStatusMapper interface.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE BXCODE APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -27,21 +27,21 @@ import java.util.List;
         componentModel = MappingConstants.ComponentModel.SPRING,
         nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
 )
-public interface IDivisionStatusMapper {
+public interface IBrigadeStatusMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "uuId", source = "uuId")
-    @Mapping(target = "dsCode", source = "code")
-    @Mapping(target = "dsName", source = "name")
-    @Mapping(target = "dsDescription", source = "description")
-    @Mapping(target = "epDivisions", ignore = true)
-    EpDivisionStatusEntity mapperToEntity(DivisionStatusDto source);
+    @Mapping(target = "bsCode", source = "code")
+    @Mapping(target = "bsName", source = "name")
+    @Mapping(target = "bsDescription", source = "description")
+    @Mapping(target = "epBrigades", ignore = true)
+    EpBrigadeStatusEntity mapperToEntity(BrigadeStatusDto source);
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "uuId", source = "uuId")
-    @Mapping(target = "code", source = "dsName")
-    @Mapping(target = "name", source = "dsName")
-    @Mapping(target = "description", source = "dsDescription")
-    DivisionStatusDto mapperToDto(EpDivisionStatusEntity source);
+    @Mapping(target = "code", source = "bsCode")
+    @Mapping(target = "name", source = "bsName")
+    @Mapping(target = "description", source = "bsDescription")
+    BrigadeStatusDto mapperToDto(EpBrigadeStatusEntity source);
 
-    List<DivisionStatusDto> mapperToList(Iterable<EpDivisionStatusEntity> entities);
+    List<BrigadeStatusDto> mapperToList(Iterable<EpBrigadeStatusEntity> entities);
 }

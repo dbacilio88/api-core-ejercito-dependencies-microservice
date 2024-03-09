@@ -12,9 +12,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
- * DivisionStatusDto
+ * BrigadeStatusDto
  * <p>
- * DivisionStatusDto class.
+ * BrigadeStatusDto class.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE BXCODE APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -29,7 +29,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DivisionStatusDto implements Serializable {
+public class BrigadeStatusDto implements Serializable {
 
     private static final long serialVersionUID = 6513459404533226833L;
 

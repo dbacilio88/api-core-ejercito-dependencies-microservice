@@ -29,7 +29,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DivisionStatusDto implements Serializable {
+public class UnitStatusDto implements Serializable {
 
     private static final long serialVersionUID = 6513459404533226833L;
 

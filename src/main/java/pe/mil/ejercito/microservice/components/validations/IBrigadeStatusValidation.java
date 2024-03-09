@@ -5,7 +5,7 @@ import com.bxcode.tools.loader.componets.helpers.CommonRequestHelper;
 import com.bxcode.tools.loader.componets.validations.ProcessValidationResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pe.mil.ejercito.microservice.dtos.DivisionStatusDto;
+import pe.mil.ejercito.microservice.dtos.BrigadeStatusDto;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
@@ -16,9 +16,9 @@ import java.util.function.Function;
 import static pe.mil.ejercito.microservice.constants.LoggerConstant.MICROSERVICE_PROCESS_VALIDATION_PARAMETER_REQUIRED;
 
 /**
- * IDivisionStatusValidation
+ * IBrigadeStatusValidation
  * <p>
- * IDivisionStatusValidation interface.
+ * IBrigadeStatusValidation interface.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE BXCODE APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -30,15 +30,14 @@ import static pe.mil.ejercito.microservice.constants.LoggerConstant.MICROSERVICE
  */
 
 @FunctionalInterface
-public interface IDivisionStatusValidation extends Function<DivisionStatusDto, Mono<ProcessValidationResult>> {
-    Logger log = LogManager.getLogger(IDivisionStatusValidation.class);
-
-    static IDivisionStatusValidation doOnValidationResponse() {
-        return divisionStatusResponse -> {
+public interface IBrigadeStatusValidation extends Function<BrigadeStatusDto, Mono<ProcessValidationResult>> {
+    Logger log = LogManager.getLogger(IBrigadeStatusValidation.class);
+    static IBrigadeStatusValidation doOnValidationResponse() {
+        return brigadeStatusResponse -> {
             ProcessValidationResult validationResult = ProcessValidationResult.builder().processResult(ProcessResult.PROCESS_SUCCESS).build();
             List<String> errors = new ArrayList<>();
 
-            if (Boolean.TRUE.equals(inValidDivisionStatusParameter(divisionStatusResponse))) {
+            if (Boolean.TRUE.equals(inValidBrigadeStatusParameter(brigadeStatusResponse))) {
                 log.error(MICROSERVICE_PROCESS_VALIDATION_PARAMETER_REQUIRED);
                 errors.add(MICROSERVICE_PROCESS_VALIDATION_PARAMETER_REQUIRED);
             }
@@ -47,11 +46,12 @@ public interface IDivisionStatusValidation extends Function<DivisionStatusDto, M
                 validationResult.setProcessResult(ProcessResult.PROCESS_FAILED);
                 validationResult.setErrors(errors);
             }
+
             return Mono.just(validationResult);
         };
     }
 
-    static boolean inValidDivisionStatusParameter(final DivisionStatusDto valid) {
+    static boolean inValidBrigadeStatusParameter(final BrigadeStatusDto valid) {
         return Objects.isNull(valid.getId())
                 || Objects.isNull(valid.getUuId())
                 || CommonRequestHelper.isInvalidId(valid.getId())
@@ -59,6 +59,5 @@ public interface IDivisionStatusValidation extends Function<DivisionStatusDto, M
                 || Objects.isNull(valid.getName())
                 || Objects.isNull(valid.getCode())
                 || Objects.isNull(valid.getDescription());
-
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
+import pe.mil.ejercito.microservice.components.properties.DataSourceProperties;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -106,6 +107,11 @@ public class MicroservicesConfiguration implements WebFluxConfigurer {
                 .license("bxcode Inc.")
                 .licenseUrl(URL)
                 .build();
+    }
+
+    @Bean
+    public DataSourceProperties dataSourceProperties() {
+        return new DataSourceProperties();
     }
 
 }

@@ -47,16 +47,16 @@ public class EpDivisionStatusEntity {
     @Size(max = 11)
     @NotNull
     @Column(name = "DS_CODE", nullable = false, length = 9)
-    private String code;
+    private String dsCode;
 
     @Size(max = 11)
     @NotNull
     @Column(name = "DS_NAME", nullable = false, length = 9)
-    private String name;
+    private String dsName;
 
     @Size(max = 20)
     @Column(name = "DS_DESCRIPTION", length = 20)
-    private String description;
+    private String dsDescription;
     @Builder.Default
     @ToString.Exclude
     @OneToMany(mappedBy = "diStatus")

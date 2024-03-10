@@ -1,5 +1,6 @@
 package pe.mil.ejercito.microservice.repositories.searching;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.jpa.domain.Specification;
 import pe.mil.ejercito.microservice.repositories.entities.EpBrigadeEntity;
@@ -21,6 +22,7 @@ import javax.persistence.criteria.Predicate;
  * @since 9/03/2024
  */
 
+@UtilityClass
 @Log4j2
 public class BrigadeSpecification {
 

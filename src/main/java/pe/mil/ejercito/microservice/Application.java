@@ -1,11 +1,7 @@
 package pe.mil.ejercito.microservice;
 
-import com.bxcode.tools.loader.base.MicroserviceBaseApplication;
-import com.bxcode.tools.loader.componets.properties.MicroserviceProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * Application
@@ -25,14 +21,7 @@ import javax.validation.constraints.NotNull;
         "pe.mil.ejercito.microservice",
         "com.bxcode.tools.loader",
 })
-public class Application extends MicroserviceBaseApplication {
-
-
-
-    public Application(@NotNull MicroserviceProperties microserviceProperties) {
-        super(microserviceProperties);
-    }
-
+public class Application  {
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
     }

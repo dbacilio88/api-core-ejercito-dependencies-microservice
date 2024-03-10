@@ -4,10 +4,14 @@ import com.bxcode.tools.loader.componets.enums.ProcessResult;
 import com.bxcode.tools.loader.componets.enums.ResponseEnum;
 import com.bxcode.tools.loader.componets.exceptions.CommonException;
 import com.bxcode.tools.loader.componets.helpers.CommonRequestHelper;
+import com.bxcode.tools.loader.dto.PageableDto;
 import com.bxcode.tools.loader.services.base.ReactorServiceBase;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import pe.mil.ejercito.microservice.components.helper.PageableHelper;
 import pe.mil.ejercito.microservice.components.mappers.IBrigadeMapper;
 import pe.mil.ejercito.microservice.components.validations.IBrigadeValidation;
 import pe.mil.ejercito.microservice.dtos.BrigadeDto;
@@ -60,16 +64,6 @@ public class BrigadeDomainService extends ReactorServiceBase implements IBrigade
         this.brigadeMapper = brigadeMapper;
     }
 
-    @Override
-    public Mono<List<BrigadeDto>> getAllEntities() {
-        final Iterable<EpBrigadeEntity> persistenceEntities = this.brigadeRepository.findAllCustom();
-        final List<BrigadeDto> list = this.brigadeMapper.mapperToList(persistenceEntities);
-        return Mono.just(list)
-                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
-                .doOnError(throwable -> log.error(throwable.getMessage()));
-    }
-
-    @Transactional
     @Override
     public Mono<BrigadeDto> getByIdEntity(Long id) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidId(id))) {
@@ -160,7 +154,6 @@ public class BrigadeDomainService extends ReactorServiceBase implements IBrigade
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-
     private Mono<BrigadeDto> doOnUpdate(BrigadeDto dto) {
         return Mono.just(dto)
                 .flatMap(request -> {
@@ -229,7 +222,6 @@ public class BrigadeDomainService extends ReactorServiceBase implements IBrigade
                 .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-
     private Mono<BrigadeDto> getBrigadeDto(Optional<EpBrigadeEntity> brEntity, String successMessage, String messageExist) {
         return brEntity.map(brigade -> Mono.just(this.brigadeMapper.mapperToDto(brigade))
                         .doOnSuccess(success -> log.debug(successMessage))
@@ -240,5 +232,14 @@ public class BrigadeDomainService extends ReactorServiceBase implements IBrigade
                 }));
     }
 
-
+    @Override
+    public Mono<List<BrigadeDto>> getAllEntities(Long divisionId, Long statusId, String limit, String page, PageableDto pageable) {
+        Pageable paging = PageRequest.of(Integer.parseInt(page) - 1, Integer.parseInt(limit));
+        Page<EpBrigadeEntity> entityPage = this.brigadeRepository.findAll(divisionId, statusId, paging);
+        List<BrigadeDto> brigades = this.brigadeMapper.mapperToList(entityPage.getContent());
+        PageableHelper.generatePaginationDetails(entityPage, page, limit, pageable);
+        return Mono.just(brigades)
+                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
 }

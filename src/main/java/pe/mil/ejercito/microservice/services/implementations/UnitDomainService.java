@@ -4,10 +4,15 @@ import com.bxcode.tools.loader.componets.enums.ProcessResult;
 import com.bxcode.tools.loader.componets.enums.ResponseEnum;
 import com.bxcode.tools.loader.componets.exceptions.CommonException;
 import com.bxcode.tools.loader.componets.helpers.CommonRequestHelper;
+import com.bxcode.tools.loader.dto.PageableDto;
 import com.bxcode.tools.loader.services.base.ReactorServiceBase;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pe.mil.ejercito.microservice.components.helper.PageableHelper;
 import pe.mil.ejercito.microservice.components.mappers.IUnitMapper;
 import pe.mil.ejercito.microservice.components.validations.IUnitValidation;
 import pe.mil.ejercito.microservice.dtos.UnitDto;
@@ -58,15 +63,6 @@ public class UnitDomainService extends ReactorServiceBase implements IUnitDomain
         this.unitStatusRepository = unitStatusRepository;
         this.brigadeRepository = brigadeRepository;
         this.unitMapper = unitMapper;
-    }
-
-    @Override
-    public Mono<List<UnitDto>> getAllEntities() {
-        final Iterable<EpUnitEntity> persistenceEntities = this.unitRepository.findAllCustom();
-        final List<UnitDto> list = this.unitMapper.mapperToList(persistenceEntities);
-        return Mono.just(list)
-                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
-                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
     @Transactional
@@ -237,5 +233,14 @@ public class UnitDomainService extends ReactorServiceBase implements IUnitDomain
                 }));
     }
 
-
+    @Override
+    public Mono<List<UnitDto>> getAllEntities(Long brigadeId, Long statusId, String limit, String page, PageableDto pageable) {
+        Pageable paging = PageRequest.of(Integer.parseInt(page) - 1, Integer.parseInt(limit));
+        Page<EpUnitEntity> entityPage = this.unitRepository.findAll(brigadeId, statusId, paging);
+        List<UnitDto> brigades = this.unitMapper.mapperToList(entityPage.getContent());
+        PageableHelper.generatePaginationDetails(entityPage, page, limit, pageable);
+        return Mono.just(brigades)
+                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
 }

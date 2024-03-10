@@ -1,5 +1,6 @@
 package pe.mil.ejercito.microservice.services.contracts;
 
+import com.bxcode.tools.loader.dto.PageableDto;
 import com.bxcode.tools.loader.services.interfaces.*;
 import pe.mil.ejercito.microservice.dtos.DivisionDto;
 import reactor.core.publisher.Mono;
@@ -20,10 +21,11 @@ import java.util.List;
  * @since 27/02/2024
  */
 public interface IDivisionDomainService extends
-        IGetAllDomainEntity<Mono<List<DivisionDto>>>,
         IGetByIdDomainEntity<Mono<DivisionDto>, Long>,
         IGetByUuIdDomainEntity<Mono<DivisionDto>, String>,
         ISaveDomainEntity<Mono<DivisionDto>, DivisionDto>,
         IUpdateDomainEntity<Mono<DivisionDto>, DivisionDto>,
-        IDeleteDomainEntity<Mono<DivisionDto>,String> {
+        IDeleteDomainEntity<Mono<DivisionDto>, String> {
+
+    Mono<List<DivisionDto>> getAllEntities(Long statusId, String limit, String page, PageableDto pageable);
 }

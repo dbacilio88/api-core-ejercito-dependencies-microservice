@@ -1,5 +1,6 @@
 package pe.mil.ejercito.microservice.services.contracts;
 
+import com.bxcode.tools.loader.dto.PageableDto;
 import com.bxcode.tools.loader.services.interfaces.*;
 import pe.mil.ejercito.microservice.dtos.BrigadeDto;
 import reactor.core.publisher.Mono;
@@ -20,10 +21,11 @@ import java.util.List;
  * @since 27/02/2024
  */
 public interface IBrigadeDomainService extends
-        IGetAllDomainEntity<Mono<List<BrigadeDto>>>,
         IGetByIdDomainEntity<Mono<BrigadeDto>, Long>,
         IGetByUuIdDomainEntity<Mono<BrigadeDto>, String>,
         ISaveDomainEntity<Mono<BrigadeDto>, BrigadeDto>,
         IUpdateDomainEntity<Mono<BrigadeDto>, BrigadeDto>,
-        IDeleteDomainEntity<Mono<BrigadeDto>,String> {
+        IDeleteDomainEntity<Mono<BrigadeDto>, String> {
+
+    Mono<List<BrigadeDto>> getAllEntities(Long divisionId, Long statusId, String limit, String page, PageableDto pageable);
 }

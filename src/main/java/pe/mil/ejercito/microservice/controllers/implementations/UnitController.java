@@ -1,9 +1,7 @@
 package pe.mil.ejercito.microservice.controllers.implementations;
 
 import com.bxcode.tools.loader.controllers.base.ReactorControllerBase;
-import com.bxcode.tools.loader.dto.GenericResponse;
-import com.bxcode.tools.loader.dto.ProcessResponse;
-import com.bxcode.tools.loader.dto.Response;
+import com.bxcode.tools.loader.dto.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -49,9 +47,16 @@ public class UnitController extends ReactorControllerBase implements IUnitContro
 
     @Override
     @GetMapping(path = FIND_ALL_UNIT_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<Object>> doOnFindAllExecute() {
-        return this.service.getAllEntities()
-                .flatMap(current -> super.response(ProcessResponse.success(new GenericResponse<>(current))))
+    public Mono<ResponseEntity<Object>> doOnFindAllExecute(@RequestParam(required = false) Long brigadeId,
+                                                           @RequestParam(required = false) Long statusId,
+                                                           @RequestParam(required = false, defaultValue = "10") String limit,
+                                                           @RequestParam(required = false, defaultValue = "1") String page) {
+
+        final PageableDto pageableUnit = PageableDto.builder().build();
+        return this.service.getAllEntities(brigadeId, statusId, limit, page, pageableUnit)
+                .flatMap(current -> super.response(ProcessResponse.success(new PageableResponse<>(current, MetadataDto.builder()
+                        .pageable(pageableUnit)
+                        .build()))))
                 .onErrorResume(WebExchangeBindException.class, Mono::error)
                 .doOnSuccess(success -> log.info(MICROSERVICE_CONTROLLER_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
                 .doOnError(throwable -> log.error(throwable.getMessage()));

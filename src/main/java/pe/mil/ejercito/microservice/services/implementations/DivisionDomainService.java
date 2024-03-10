@@ -4,10 +4,15 @@ import com.bxcode.tools.loader.componets.enums.ProcessResult;
 import com.bxcode.tools.loader.componets.enums.ResponseEnum;
 import com.bxcode.tools.loader.componets.exceptions.CommonException;
 import com.bxcode.tools.loader.componets.helpers.CommonRequestHelper;
+import com.bxcode.tools.loader.dto.PageableDto;
 import com.bxcode.tools.loader.services.base.ReactorServiceBase;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pe.mil.ejercito.microservice.components.helper.PageableHelper;
 import pe.mil.ejercito.microservice.components.mappers.IDivisionMapper;
 import pe.mil.ejercito.microservice.components.validations.IDivisionValidation;
 import pe.mil.ejercito.microservice.dtos.DivisionDto;
@@ -53,15 +58,6 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
         this.divisionRepository = divisionRepository;
         this.divisionStatusRepository = divisionStatusRepository;
         this.divisionMapper = divisionMapper;
-    }
-
-    @Override
-    public Mono<List<DivisionDto>> getAllEntities() {
-        final Iterable<EpDivisionEntity> persistenceEntities = this.divisionRepository.findAllCustom();
-        final List<DivisionDto> list = this.divisionMapper.mapperToList(persistenceEntities);
-        return Mono.just(list)
-                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
-                .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
     @Transactional
@@ -215,4 +211,14 @@ public class DivisionDomainService extends ReactorServiceBase implements IDivisi
     }
 
 
+    @Override
+    public Mono<List<DivisionDto>> getAllEntities(Long statusId, String limit, String page, PageableDto pageable) {
+        Pageable paging = PageRequest.of(Integer.parseInt(page) - 1, Integer.parseInt(limit));
+        Page<EpDivisionEntity> entityPage = this.divisionRepository.findAll(statusId, paging);
+        List<DivisionDto> brigades = this.divisionMapper.mapperToList(entityPage.getContent());
+        PageableHelper.generatePaginationDetails(entityPage, page, limit, pageable);
+        return Mono.just(brigades)
+                .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
+                .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
 }

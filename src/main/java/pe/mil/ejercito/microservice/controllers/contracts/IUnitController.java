@@ -49,7 +49,10 @@ public interface IUnitController {
             @ApiImplicitParam(name = HttpHeaders.ACCEPT, value = MediaType.APPLICATION_JSON_VALUE, required = true, paramType = "header", dataTypeClass = String.class, defaultValue = MediaType.APPLICATION_JSON_VALUE),
             @ApiImplicitParam(name = HttpHeaders.CONTENT_TYPE, value = MediaType.APPLICATION_JSON_VALUE, required = true, paramType = "header", dataTypeClass = String.class, defaultValue = MediaType.APPLICATION_JSON_VALUE)
     })
-    Mono<ResponseEntity<Object>> doOnFindAllExecute();
+    Mono<ResponseEntity<Object>> doOnFindAllExecute(Long brigadeId,
+                                                    Long statusId,
+                                                    String limit,
+                                                    String page);
 
     @Operation(summary = "Returns the status Unit by id", description = CategoryRestConstant.CATEGORY_GENERAL_DESCRIPTION, tags = {CategoryRestConstant.CATEGORY_GENERAL})
     @ApiResponses(value = {

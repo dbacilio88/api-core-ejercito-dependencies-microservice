@@ -21,12 +21,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/division-status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/v1/division-status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
+								"{{component-dependency-path}}",
 								"v1",
 								"division-status"
 							]
@@ -46,13 +46,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/division-status/id/1/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/division-status/id/1/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"division-status",
 								"id",
 								"1",
@@ -74,13 +73,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/division-status/uuid/65a79098-8039-43e7-a2d7-800707dbd8fe/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/division-status/uuid/65a79098-8039-43e7-a2d7-800707dbd8fe/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"division-status",
 								"uuid",
 								"65a79098-8039-43e7-a2d7-800707dbd8fe",
@@ -111,12 +109,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/division-status/create",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/v1/division-status/create",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
+								"{{component-dependency-path}}",
 								"v1",
 								"division-status",
 								"create"
@@ -146,12 +144,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/division-status/update",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/v1/division-status/update",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
+								"{{component-dependency-path}}",
 								"v1",
 								"division-status",
 								"update"
@@ -172,13 +170,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/division-status/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/division-status/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"division-status",
 								"delete",
 								"uuId",
@@ -206,13 +203,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigade-status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigade-status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigade-status"
 							]
 						}
@@ -231,13 +227,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigade-status/id/2/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigade-status/id/2/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigade-status",
 								"id",
 								"2",
@@ -259,13 +254,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigade-status/uuid/aa705bb5-ae7a-4c39-a5a8-a4519ed57836/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigade-status/uuid/aa705bb5-ae7a-4c39-a5a8-a4519ed57836/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigade-status",
 								"uuid",
 								"aa705bb5-ae7a-4c39-a5a8-a4519ed57836",
@@ -296,13 +290,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigade-status/create",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigade-status/create",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigade-status",
 								"create"
 							]
@@ -331,13 +324,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigade-status/update",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigade-status/update",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigade-status",
 								"update"
 							]
@@ -357,13 +349,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigade-status/delete/uuId/e6a7e02e-3fdb-4853-8d1d-642b120aea6c/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigade-status/delete/uuId/e6a7e02e-3fdb-4853-8d1d-642b120aea6c/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigade-status",
 								"delete",
 								"uuId",
@@ -391,13 +382,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/unit-status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/unit-status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"unit-status"
 							]
 						}
@@ -416,13 +406,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/unit-status/id/1/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/unit-status/id/1/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"unit-status",
 								"id",
 								"1",
@@ -444,13 +433,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/unit-status/uuid/7f1e409c-145c-42c6-a616-86cc7777c3b2/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/unit-status/uuid/7f1e409c-145c-42c6-a616-86cc7777c3b2/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"unit-status",
 								"uuid",
 								"7f1e409c-145c-42c6-a616-86cc7777c3b2",
@@ -481,13 +469,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/unit-status/create",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/unit-status/create",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"unit-status",
 								"create"
 							]
@@ -516,13 +503,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/unit-status/update",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/unit-status/update",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"unit-status",
 								"update"
 							]
@@ -542,13 +528,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/unit-status/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/status",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/unit-status/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/status",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"unit-status",
 								"delete",
 								"uuId",
@@ -583,13 +568,12 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/divisions?limit=4&page=1",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/divisions?limit=4&page=1",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"divisions"
 							],
 							"query": [
@@ -623,13 +607,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/divisions/id/4/division",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/divisions/id/4/division",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"divisions",
 								"id",
 								"4",
@@ -651,13 +634,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/divisions/uuid/848a52e0-0350-4f5d-a378-37219ab77202/division",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/divisions/uuid/848a52e0-0350-4f5d-a378-37219ab77202/division",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"divisions",
 								"uuid",
 								"848a52e0-0350-4f5d-a378-37219ab77202",
@@ -688,13 +670,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/divisions/create",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/divisions/create",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"divisions",
 								"create"
 							]
@@ -723,13 +704,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/divisions/update",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/divisions/update",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"divisions",
 								"update"
 							]
@@ -749,13 +729,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/divisions/delete/uuId/848a52e0-0350-4f5d-a378-37219ab77202/division",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/divisions/delete/uuId/848a52e0-0350-4f5d-a378-37219ab77202/division",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"divisions",
 								"delete",
 								"uuId",
@@ -783,13 +762,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigades?divisionId=2&statusId=2&limit=4&page=2",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigades?divisionId=2&statusId=2&limit=4&page=2",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigades"
 							],
 							"query": [
@@ -826,13 +804,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigades/id/3/brigade",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigades/id/3/brigade",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigades",
 								"id",
 								"3",
@@ -854,13 +831,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigades/uuid/5f9b2b73-7d46-4cba-85a9-d1369253e1a4/brigade",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigades/uuid/5f9b2b73-7d46-4cba-85a9-d1369253e1a4/brigade",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigades",
 								"uuid",
 								"5f9b2b73-7d46-4cba-85a9-d1369253e1a4",
@@ -891,13 +867,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigades/create",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigades/create",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigades",
 								"create"
 							]
@@ -926,13 +901,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigades/update",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigades/update",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigades",
 								"update"
 							]
@@ -952,13 +926,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/brigades/delete/uuId/1c6f37ca-76c1-4d4a-8243-ffb407171ff3/brigade",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/brigades/delete/uuId/1c6f37ca-76c1-4d4a-8243-ffb407171ff3/brigade",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"brigades",
 								"delete",
 								"uuId",
@@ -986,13 +959,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/units?brigadeId=3&limit=4&page=1",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/units?brigadeId=3&limit=4&page=1",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"units"
 							],
 							"query": [
@@ -1030,13 +1002,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/units/id/4/unit",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/units/id/4/unit",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"units",
 								"id",
 								"4",
@@ -1058,13 +1029,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/units/uuid/848a52e0-0350-4f5d-a378-37219ab77202/unit",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/units/uuid/848a52e0-0350-4f5d-a378-37219ab77202/unit",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"units",
 								"uuid",
 								"848a52e0-0350-4f5d-a378-37219ab77202",
@@ -1095,13 +1065,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/units/create",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/units/create",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"units",
 								"create"
 							]
@@ -1130,13 +1099,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/units/update",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/units/update",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"units",
 								"update"
 							]
@@ -1156,18 +1124,1348 @@
 							}
 						],
 						"url": {
-							"raw": "{{api-host-microservice}}/api-core-ejercito-dependencies-microservice/v1/units/delete/uuId/848a52e0-0350-4f5d-a378-37219ab77202/unit",
+							"raw": "{{api-host-microservice}}/{{component-dependency-path}}/units/delete/uuId/848a52e0-0350-4f5d-a378-37219ab77202/unit",
 							"host": [
 								"{{api-host-microservice}}"
 							],
 							"path": [
-								"api-core-ejercito-dependencies-microservice",
-								"v1",
+								"{{component-dependency-path}}",
 								"units",
 								"delete",
 								"uuId",
 								"848a52e0-0350-4f5d-a378-37219ab77202",
 								"unit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "module-status",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/module-status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"module-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/module-status/id/1/status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"module-status",
+								"id",
+								"1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-uuid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/module-status/uuid/da522066-5a03-4c97-a700-e67af5905290/status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"module-status",
+								"uuid",
+								"da522066-5a03-4c97-a700-e67af5905290",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"code\": \"ACTIVATED\",\r\n        \"description\": \"DIVISION ACTIVATED\",\r\n        \"name\": \"ACTIVATED\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/module-status/create",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"module-status",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"INACTIVATED\",\r\n    \"description\": \"DIVISION INACTIVATED\",\r\n    \"id\": 40,\r\n    \"name\": \"INACTIVATED\",\r\n    \"uuId\": \"65a79098-8039-43e7-a2d7-800707dbd8fe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/module-status/update",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"module-status",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/module-status/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"module-status",
+								"delete",
+								"uuId",
+								"1e47bce1-8f3f-42f8-b418-51abd2153d43",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile-status",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profile-status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profile-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profile-status/id/1/status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profile-status",
+								"id",
+								"1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-uuid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profile-status/uuid/da522066-5a03-4c97-a700-e67af5905290/status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profile-status",
+								"uuid",
+								"da522066-5a03-4c97-a700-e67af5905290",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"code\": \"ACTIVATED\",\r\n        \"description\": \"DIVISION ACTIVATED\",\r\n        \"name\": \"ACTIVATED\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profile-status/create",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profile-status",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"INACTIVATED\",\r\n    \"description\": \"DIVISION INACTIVATED\",\r\n    \"id\": 40,\r\n    \"name\": \"INACTIVATED\",\r\n    \"uuId\": \"65a79098-8039-43e7-a2d7-800707dbd8fe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profile-status/update",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profile-status",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profile-status/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/status",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profile-status",
+								"delete",
+								"uuId",
+								"1e47bce1-8f3f-42f8-b418-51abd2153d43",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profiles",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles?status=ae8436dd-3076-4a0e-b563-fe67695ab388&limit=4&page=1",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "ae8436dd-3076-4a0e-b563-fe67695ab388"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles/id/1/profile",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles",
+								"id",
+								"1",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-uuid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles/uuid/d74143a5-4df5-4766-8c7d-21bbf547aa29/profile",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles",
+								"uuid",
+								"d74143a5-4df5-4766-8c7d-21bbf547aa29",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"ae8436dd-3076-4a0e-b563-fe67695ab388\",\r\n    \"name\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles/create",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"ADMINSTRADOR\",\r\n    \"status\": \"ae8436dd-3076-4a0e-b563-fe67695ab388\",\r\n    \"uuId\": \"fbee919f-f973-4876-8121-96e5291ec6a7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles/update",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/profile",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles",
+								"delete",
+								"uuId",
+								"1e47bce1-8f3f-42f8-b418-51abd2153d43",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "persons",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/persons?limit=4&page=1",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"persons"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/persons/id/1/person",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"persons",
+								"id",
+								"1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-uuid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/persons/uuid/51db274d-9c9c-4151-9c43-d561ce0177cf/person",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"persons",
+								"uuid",
+								"51db274d-9c9c-4151-9c43-d561ce0177cf",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"dob\": \"1988-01-19T05:00:00Z\",\r\n        \"lastName\": \"BACILIO DE LA CRUZ\",\r\n        \"name\": \"JOSE ANTONY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/persons/create",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"persons",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"dob\": \"2004-01-19T05:00:00Z\",\r\n        \"id\": 3,\r\n        \"lastName\": \"BACILIO DE LA CRUZ\",\r\n        \"name\": \"JOSE ANTONY\",\r\n        \"uuId\": \"3e6e779f-a24c-499b-b447-20101b849194\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/persons/update",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"persons",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/persons/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/person",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"persons",
+								"delete",
+								"uuId",
+								"1e47bce1-8f3f-42f8-b418-51abd2153d43",
+								"person"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/users?status=809b267d-b32e-4fab-9a7c-5c6d3c708c6a&profile=d74143a5-4df5-4766-8c7d-21bbf547aa29&person=51db274d-9c9c-4151-9c43-d561ce0177cf&limit=4&page=1",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "809b267d-b32e-4fab-9a7c-5c6d3c708c6a"
+								},
+								{
+									"key": "profile",
+									"value": "d74143a5-4df5-4766-8c7d-21bbf547aa29"
+								},
+								{
+									"key": "person",
+									"value": "51db274d-9c9c-4151-9c43-d561ce0177cf"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/users/id/1/user",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"users",
+								"id",
+								"1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-uuid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/users/uuid/59b32045-977e-4572-8d04-d543906e3299/user",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"users",
+								"uuid",
+								"59b32045-977e-4572-8d04-d543906e3299",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"password\": \"123\",\r\n    \"person\": \"51db274d-9c9c-4151-9c43-d561ce0177cf\",\r\n    \"profile\": \"d74143a5-4df5-4766-8c7d-21bbf547aa29\",\r\n    \"status\": \"809b267d-b32e-4fab-9a7c-5c6d3c708c6a\",\r\n    \"username\": \"DAVID\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/users/create",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createDate\": \"2024-03-11T03:26:31.293845500Z\",\r\n    \"id\": 4,\r\n    \"password\": \"1234\",\r\n    \"person\": \"51db274d-9c9c-4151-9c43-d561ce0177cf\",\r\n    \"profile\": \"d74143a5-4df5-4766-8c7d-21bbf547aa29\",\r\n    \"status\": \"809b267d-b32e-4fab-9a7c-5c6d3c708c6a\",\r\n    \"username\": \"DAVID\",\r\n    \"uuId\": \"4fa4daf5-fc3c-45af-8a4c-3667d0dde919\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/users/update",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/persons/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/person",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"persons",
+								"delete",
+								"uuId",
+								"1e47bce1-8f3f-42f8-b418-51abd2153d43",
+								"person"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "modules",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/modules?status=eaefe1d5-e531-46b7-bb4b-9fe59abf5fc5&limit=4&page=1",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"modules"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "eaefe1d5-e531-46b7-bb4b-9fe59abf5fc5"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/modules/id/1/module",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"modules",
+								"id",
+								"1",
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-uuid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/modules/uuid/d74143a5-4df5-4766-8c7d-21bbf547aa29/module",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"modules",
+								"uuid",
+								"d74143a5-4df5-4766-8c7d-21bbf547aa29",
+								"module"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"component\": true,\r\n    \"group\": 1,\r\n    \"icon\": \"icon-1\",\r\n    \"isMenu\": true,\r\n    \"name\": \"LOGOs\",\r\n    \"order\": 1,\r\n    \"path\": \"path-1\",\r\n    \"status\": \"eaefe1d5-e531-46b7-bb4b-9fe59abf5fc5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/modules/create",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"modules",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"component\": true,\r\n    \"createDate\": \"2024-03-11T12:08:57.733222400Z\",\r\n    \"group\": 1,\r\n    \"icon\": \"icon-1\",\r\n    \"id\": 5,\r\n    \"isMenu\": true,\r\n    \"name\": \"LOGOS\",\r\n    \"order\": 1,\r\n    \"path\": \"path-1\",\r\n    \"status\": \"eaefe1d5-e531-46b7-bb4b-9fe59abf5fc5\",\r\n    \"uuId\": \"eb6b09f9-4035-4685-9ad1-569778eddd61\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/modules/update",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"modules",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/modules/delete/uuId/1e47bce1-8f3f-42f8-b418-51abd2153d43/module",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"modules",
+								"delete",
+								"uuId",
+								"1e47bce1-8f3f-42f8-b418-51abd2153d43",
+								"module"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "modules Copy",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles-option-modules?module=44cecf39-4d15-4850-adbb-43af5560c698&profile=d74143a5-4df5-4766-8c7d-21bbf547aa29&limit=4&page=1",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles-option-modules"
+							],
+							"query": [
+								{
+									"key": "module",
+									"value": "44cecf39-4d15-4850-adbb-43af5560c698"
+								},
+								{
+									"key": "profile",
+									"value": "d74143a5-4df5-4766-8c7d-21bbf547aa29"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles-option-modules/id/1/options",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles-option-modules",
+								"id",
+								"1",
+								"options"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-uuid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles-option-modules/uuid/c1e73fd4-b4b4-4c78-89bd-2234bbb245ff/options",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles-option-modules",
+								"uuid",
+								"c1e73fd4-b4b4-4c78-89bd-2234bbb245ff",
+								"options"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"module\": \"44cecf39-4d15-4850-adbb-43af5560c698\",\r\n    \"privileges\": \"true,true,true,true,true,true,true,true\",\r\n    \"profile\": \"d74143a5-4df5-4766-8c7d-21bbf547aa29\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles-option-modules/create",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles-option-modules",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createDate\": \"2024-03-11T13:26:08.543272200Z\",\r\n    \"id\": 4,\r\n    \"module\": \"44cecf39-4d15-4850-adbb-43af5560c698\",\r\n    \"privileges\": \"false,false,false,false,false,false,false,false\",\r\n    \"profile\": \"d74143a5-4df5-4766-8c7d-21bbf547aa29\",\r\n    \"uuId\": \"4364a56e-a695-4f4b-ba4c-6e73ff5f4ff8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles-option-modules/update",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles-option-modules",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "fc6007c7-aea8-4d56-abc6-c939411f1755",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api-host-microservice}}/{{component-security-path}}/profiles-option-modules/delete/uuId/4364a56e-a695-4f4b-ba4c-6e73ff5f4ff8/options",
+							"host": [
+								"{{api-host-microservice}}"
+							],
+							"path": [
+								"{{component-security-path}}",
+								"profiles-option-modules",
+								"delete",
+								"uuId",
+								"4364a56e-a695-4f4b-ba4c-6e73ff5f4ff8",
+								"options"
 							]
 						}
 					},

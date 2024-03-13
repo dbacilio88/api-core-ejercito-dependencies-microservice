@@ -43,8 +43,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         basePackages = "pe.mil.ejercito.microservice.repositories",
-        entityManagerFactoryRef = "managerFactoryBean",
-        transactionManagerRef = "transactionManager"
+        entityManagerFactoryRef = "managerFactoryBean"
 )
 public class MicroservicePersistenceConfiguration {
 

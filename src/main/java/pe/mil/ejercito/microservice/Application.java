@@ -2,6 +2,7 @@ package pe.mil.ejercito.microservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * Application
@@ -16,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author bacsystem.sac@gmail.com
  * @since 20/02/2024
  */
-
+@EnableEurekaClient
 @SpringBootApplication(scanBasePackages = {
         "pe.mil.ejercito.microservice",
         "com.bxcode.tools.loader",

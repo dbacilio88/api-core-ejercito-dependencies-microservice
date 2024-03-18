@@ -22,6 +22,8 @@ spring:
     banner-mode: log
     lazy-initialization: false
   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
     converters:
       preferred-json-mapper: jsonb
   jpa:
@@ -49,6 +51,15 @@ spring:
       minimum-idle: 10                    # This property controls the minimum number of idle connections that HikariCP tries to maintain in the pool, default: 10
       maximum-pool-size: 20               # This property controls the maximum size that the pool is allowed to reach, including both idle and in-use connections. Basically this value will determine the maximum number of actual connections to the database backend, default: 10
       validation-timeout: 5000            # This property controls the maximum amount of time that a connection will be tested for aliveness. This value must be less than the :connection-timeout. The lowest accepted validation timeout is 1000ms (1 second).
+
+#eureka configuration
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
 #logging configuration
 logging:
   level:

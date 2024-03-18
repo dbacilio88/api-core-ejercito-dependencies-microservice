@@ -1,10 +1,5 @@
 package pe.mil.ejercito.microservice.components.configuration;
 
-import com.bxcode.tools.loader.constants.CategoryRestConstant;
-import com.bxcode.tools.loader.dto.base.ResponseBase;
-import com.fasterxml.classmate.TypeResolver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -12,17 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import pe.mil.ejercito.microservice.components.properties.DataSourceProperties;
-import springfox.documentation.annotations.ApiIgnore;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.oas.annotations.EnableOpenApi;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.Tag;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger.web.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * MicroservicesConfiguration
@@ -37,27 +21,30 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author bacsystem.sac@gmail.com
  * @since 25/02/2024
  */
+
 @Configuration
-@EnableSwagger2
-@EnableOpenApi
+//@EnableSwagger2
+//@EnableOpenApi
 @EnableWebFlux
-@EnableAutoConfiguration(exclude = {WebMvcAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {
+        WebMvcAutoConfiguration.class
+})
 public class MicroservicesConfiguration implements WebFluxConfigurer {
 
-    private final TypeResolver typeResolver;
+    /*private final TypeResolver typeResolver;
     private final String appName;
-    private final String appVersion;
+    private final String appVersion;*/
 
-    @Autowired
+    /*@Autowired
     public MicroservicesConfiguration(TypeResolver typeResolver,
                                       @Value("${spring.application.name}") String appName,
                                       @Value("${spring.application.version}") String appVersion) {
         this.typeResolver = typeResolver;
         this.appName = appName;
         this.appVersion = appVersion;
-    }
+    }*/
 
-    @Bean
+   /* @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("microservice-api")
@@ -75,9 +62,9 @@ public class MicroservicesConfiguration implements WebFluxConfigurer {
                         new Tag(CategoryRestConstant.CATEGORY_GENERAL, CategoryRestConstant.CATEGORY_GENERAL_DESCRIPTION),
                         new Tag(CategoryRestConstant.CATEGORY_BUSINESS, CategoryRestConstant.CATEGORY_BUSINESS_DESCRIPTION)
                 );
-    }
+    }*/
 
-    @Bean
+  /*  @Bean
     public UiConfiguration uiConfig() {
         return UiConfigurationBuilder.builder()
                 .deepLinking(true)
@@ -96,9 +83,9 @@ public class MicroservicesConfiguration implements WebFluxConfigurer {
                 .supportedSubmitMethods(UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS)
                 .validatorUrl(null)
                 .build();
-    }
+    }*/
 
-    private ApiInfo apiInfo() {
+   /* private ApiInfo apiInfo() {
         final String URL = "localhost";
         return new ApiInfoBuilder()
                 .version(appName)
@@ -107,7 +94,7 @@ public class MicroservicesConfiguration implements WebFluxConfigurer {
                 .license("bxcode Inc.")
                 .licenseUrl(URL)
                 .build();
-    }
+    }*/
 
     @Bean
     public DataSourceProperties dataSourceProperties() {
